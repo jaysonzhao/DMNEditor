@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="decorator" content="none" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>登录</title>
+  <!-- External JavaScript -->
+    <link href="http://lib.sinaapp.com/js/jquery-ui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet">
+    <link href="http://lib.sinaapp.com/js/jquery-ui/1.9.2/themes/base/jquery.ui.selectable.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/table.css" />
+    <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+    <script src="http://lib.sinaapp.com/js/jquery-ui/1.9.2/jquery-ui.min.js"></script>
+    <script src="js/table.js"></script>
+
+</head>
+<body>
+<div class="tablecon clearfix">
+    <div class="tablebtn clearfix">
+        <button id="btnMerge">合并单元格</button>
+        <button id="btnSplit">拆分单元格</button>
+        <button id="addline">新加行</button>
+        <button id="deleteline">删除行</button>
+        <button id="deleteseline">删除选中行</button>
+        <button id="deleteselie">删除选中列</button>
+        <button class="laybtn">弹出框</button>
+    </div>
+    <table id="t" class="table">
+        <tr>
+            <th colspan="2" class="color_1"><a href="javascript:void(0)" class="addl">+</a>输入<a href="javascript:void(0)" class="deletel">-</a></th>
+            <th colspan="7" class="color_2 selectcable"  width="42%"><a href="javascript:void(0)" class="addl1">+</a>输出<a href="javascript:void(0)" class="deletel1">-</a></th>
+         
+        </tr>
+        <tr>
+            <th  onclick="paramInfo(this)">string</th>
+            <th>string</th>
+            <th class="selectcable">内部被授权人</th>
+            <th class="selectcable">部门负责人</th>
+            <th class="selectcable">分办/会签</th>
+            <th class="selectcable">其他领导</th>
+            <th class="selectcable">部门分管领导</th>
+            <th class="selectcable">总裁</th>
+            <th class="selectcable">董事长</th>
+        </tr>
+        <tr>
+            <td onclick="paramType(this)"></td>
+            <td></td>
+            <td class="selectcable" onclick="paramValue(this)"></td>
+            <td class="selectcable" onclick="paramValue(this)"></td>
+            <td class="selectcable" onclick="paramValue(this)" ></td>
+            <td class="selectcable" onclick="paramValue(this)"></td>
+            <td class="selectcable" onclick="paramValue(this)"></td>
+            <td class="selectcable" onclick="paramValue(this)"></td>
+            <td class="selectcable" onclick="paramValue(this)"></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

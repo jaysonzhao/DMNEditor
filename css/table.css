@@ -1,0 +1,51 @@
+﻿@charset "utf-8";
+body,h1,h2,h3,h4,h5,h6,hr,menu,p,blockquote,ol,ul,dl,dd,td,th,figure,pre,button,input,textarea{font-weight:400;font-size: 12px;color:#333;line-height:1.2;margin:0;padding:0;font-family:"Microsoft YaHei";font-size: 12px;}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+address,cite,dfn,em,var{font-style:normal;}
+code,kbd,pre,samp,tt{font-family: "Microsoft YaHei", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei";line-height:1;}
+button,input,select,textarea,input{font-size:100%;font-family:"Microsoft YaHei";line-height:1;}
+fieldset,img{border:0;}
+ol,ul{list-style:none;}
+table{border-collapse:collapse;border-spacing:0;}
+a,a:hover{text-decoration:none;}
+a{cursor: pointer; color: #333;outline: none; }
+textarea{resize:none;}
+body {word-wrap: break-word;font-family:"Microsoft YaHei";}
+img{vertical-align: middle;}
+*{outline: none;box-sizing:border-box;-moz-box-sizing:-webkit-border-box;box-sizing:border-box;}
+a:focus,a:visited{outline:none;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';}
+label,button,input[type="button"],input[type="reset"],input[type="submit"],input[type="password"]{cursor:pointer;}
+ins{text-decoration:none;}
+abbr[title],acronym[title]{border-bottom:1px dotted;cursor:help;}
+input[type=submit],input[type=button],input[type=text],input[type=password]{-webkit-appearance:none;box-sizing:content-box;border:0;border-radius:0;box-shadow: none;}
+.clearfix:after{clear:both;display: block;content: "...";visibility: hidden;height: 0;font-size: 0;}
+.clearfix{*zoom:1;}
+address, caption, cite, code, dfn, em, strong, th, var, b, i, s {font-style: normal;font-weight: 400;}
+button::-moz-focus-inner,input[type="button"]::-moz-focus-inner { border:none; padding:0; }
+button, input[type="button"], input[type="submit"]{line-height:normal !important;}
+.fl{float: left;}
+.fr{float: right;}
+#t td.ui-selecting{background: #FECA40; }
+#t td.ui-selected{background: #F39814; color: white; }
+#t td.ui-selected.selectcable,#t td.ui-selecting.selectcable{cursor: default;background:#fff;color: #000;}
+.tablebtn{width: 100%;float: left;margin-bottom: 30px;}
+.tablebtn button{min-width: 100px;height: 38px;text-align: center;border:1px solid #dedede;float: left;margin-right: 10px;
+font-size: 14px;color: #333;background: #f2f2f2;padding:0 16px;}
+.tablecon{width: 100%;padding:10px 4%;}
+.table{border:1px solid #dedede;width: 100%;float: left;text-align: center;resize:none; /*outline: rgb(222,222,222) solid 1px;*/ }
+.table tr td,.table th{border:1px solid #dedede;}
+.table tr{border:1px solid #dedede;}
+.table th{white-space: nowrap;font-size: 14px;}
+.table td,.table th{padding:0 6px;}
+.table td{font-size: 12px;color: #333;}
+.table tr:nth-child(3){background:#f2f2f2;}
+.table tr:nth-child(3) th{color: #999;}
+.table tr td,.table tr th{height: 40px;}
+.gou{width: 100%;height: 100%;background: url(../images/select.png) no-repeat center;}
+.color_1{background: #f7ffff;}
+.color_2{background: #fffff2;}
+.color_3{background: #fff7fe;}
+.table tr td:nth-child(1),.table tr td:nth-child(3){text-align: left;}
+

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>决策表</title>
+ 
+    <!-- External CSS -->
+    <link href="http://lib.sinaapp.com/js/jquery-ui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet">
+    <link href="http://lib.sinaapp.com/js/jquery-ui/1.9.2/themes/base/jquery.ui.selectable.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/table.css" />
+ 
+    <!-- External JavaScript -->
+    <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+    <script src="http://lib.sinaapp.com/js/jquery-ui/1.9.2/jquery-ui.min.js"></script>
+ 
+    <!-- In-document JavaScript -->
+</head>
+ 
+<body>
+<div class="tablecon clearfix">
+    <div class="tablebtn clearfix">
+        <button id="btnMerge">合并单元格</button>
+        <button id="btnSplit">拆分单元格</button>
+        <button id="addline">新加行</button>
+        <button id="deleteline">删除行</button>
+        <button id="deleteseline">删除选中行</button>
+        <button id="deleteselie">删除选中列</button>
+    </div>
+    <table id="t" class="table">
+        <tr>
+            <th colspan="3" class="color_1"><a href="javascript:void(0)" class="addl">+</a>输入<a href="javascript:void(0)" class="deletel">-</a></th>
+            <th colspan="7" class="color_2 selectcable"  width="42%">输出</th>
+            <th class="color_3 selectcable" width="9%">备注</th>
+        </tr>
+        <tr>
+            <th class="color_1">01</th>
+            <th class="color_1">02</th>
+            <th class="color_1">03</th>
+            <th colspan="7" class="color_2 selectcable">审核流程</th>
+            <th class="color_3 selectcable">-</th>
+        </tr>
+        <tr>
+            <th>string</th>
+            <th>string</th>
+            <th>string</th>
+            <th class="selectcable">内部被授权人</th>
+            <th class="selectcable">部门负责人</th>
+            <th class="selectcable">分办/会签</th>
+            <th class="selectcable">其他领导</th>
+            <th class="selectcable">部门分管领导</th>
+            <th class="selectcable">总裁</th>
+            <th class="selectcable">董事长</th>
+            <th class="selectcable">-</th>
+        </tr>
+        <tr>
+            <td>“变动费用”</td>
+            <td>“业务接待费”</td>
+            <td>[20,100]</td>
+            <td class="selectcable">内部被授权人</td>
+            <td class="selectcable"><div class="gou"></div></td>
+            <td class="selectcable">财务</td>
+            <td class="selectcable">财务总监</td>
+            <td class="selectcable"><div class="gou"></div></td>
+            <td class="selectcable"><div class="gou"></div></td>
+            <td class="selectcable">董事长</td>
+            <td class="selectcable">-</td>
+        </tr>
+        <tr>
+            <td>“变动费用”</td>
+            <td>“业务接待费”</td>
+            <td>[20,100]</td>
+            <td class="selectcable">内部被授权人</td>
+            <td class="selectcable"><div class="gou"></div></td>
+            <td class="selectcable">财务</td>
+            <td class="selectcable">财务总监</td>
+            <td class="selectcable"><div class="gou"></div></td>
+            <td class="selectcable"><div class="gou"></div></td>
+            <td class="selectcable">董事长</td>
+            <td class="selectcable">-</td>
+        </tr>
+        <tr>
+            <td>“变动费用”</td>
+            <td>“业务接待费”</td>
+            <td>[20,100]</td>
+            <td class="selectcable">内部被授权人</td>
+            <td class="selectcable"><div class="gou"></div></td>
+            <td class="selectcable">财务</td>
+            <td class="selectcable">财务总监</td>
+            <td class="selectcable"><div class="gou"></div></td>
+            <td class="selectcable"><div class="gou"></div></td>
+            <td class="selectcable">董事长</td>
+            <td class="selectcable">-</td>
+        </tr>
+        <tr>
+            <td>“变动费用”</td>
+            <td>“业务接待费”</td>
+            <td>[20,100]</td>
+            <td class="selectcable">内部被授权人</td>
+            <td class="selectcable"><div class="gou"></div></td>
+            <td class="selectcable">财务</td>
+            <td class="selectcable">财务总监</td>
+            <td class="selectcable"><div class="gou"></div></td>
+            <td class="selectcable"><div class="gou"></div></td>
+            <td class="selectcable">董事长</td>
+            <td class="selectcable">-</td>
+        </tr>
+    </table>
+</div>
+</body>
+<script>
+
+
+// $("#table1 tr td:eq(0)").attr("colspan", 3).siblings().remove()
+// <![CDATA[
+$(function(){
+    $("#addline").click(function(){
+        if($('.table tr').length<=3){
+            $(".table").append($(".table tr:last").clone());
+            $(".table tr:last th").each(function(){
+                $(this).replaceWith('<td>'+$(this).html()+'</td>');
+            });
+            $(".table tr:last td").empty();
+        }else{
+            $(".table").append($(".table tr:last").clone());
+            $(".table tr:last td").empty();
+        }
+        
+    })
+    $("#deleteline").click(function(){
+        if($('.table tr').length>3){
+        $(".table tr:last").remove();
+        }else{
+            alert("可删除的内容为空");
+        }
+    })
+    $(".addl").click(function(){
+        var unmb=parseInt($(this).parent("th").attr("colspan"));
+        var linenumb=$('.table tr').length;
+        for(var i=1;i<linenumb;i++){
+            if(i<=2){
+                $(".table tr:eq("+i+") th").eq(unmb-1).after($(".table tr:eq("+i+") th").eq(unmb-1).clone());
+                $(".table tr:eq("+i+") th").eq(unmb).empty();
+            }else{
+                $(".table tr:eq("+i+") td").eq(unmb-1).after($(".table tr:eq("+i+") td").eq(unmb-1).clone());
+                $(".table tr:eq("+i+") td").eq(unmb).empty();
+            }
+        }
+        $(this).parent("th").attr("colspan",unmb+1);
+    })
+    $(".deletel").click(function(){
+            var unmb=parseInt($(this).parent("th").attr("colspan"));
+            if(unmb>1){
+            var linenumb=$('.table tr').length;
+            for(var i=1;i<linenumb;i++){
+                if(i<=2){
+                    $(".table tr:eq("+i+") th").eq(unmb-1).after($(".table tr:eq("+i+") th").eq(unmb-1).remove());
+                }else{
+                    $(".table tr:eq("+i+") td").eq(unmb-1).after($(".table tr:eq("+i+") td").eq(unmb-1).remove());
+                }
+            }
+            $(this).parent("th").attr("colspan",unmb-1);
+        }else{
+            alert("可删除的内容为空");
+        }
+    })
+    // 删除选中列
+    $("#deleteselie").click(function(){
+        var wline;
+        var unmb=parseInt($(".table tr:eq(0) th").attr("colspan"));
+        $("tr.ui-selectee.ui-selected").each(function(){  
+            var lie=0;
+            if($(this).children("td.ui-selected").length>=1){
+                lie=Number($(this).find(".ui-selected").prevAll().length)+1;
+            }
+            // if(lie>0){
+            //     $(this).children().eq(lie).remove();
+            // }
+            wline=lie;
+        })
+        if(wline>0){
+            for(var n=1;n<3;n++){
+                $(".table tr:eq("+i+") th").eq(wline-1).remove();
+            }
+            //console.log(wline);
+            for(var i=1;i<$('.table tr').length;i++){
+                if(i<3){
+                    $(".table tr:eq("+i+") th").eq(wline-1).remove();
+                }else{
+                    $(".table tr:eq("+i+") td").eq(wline-1).remove();
+                }
+                
+            }
+            $(".table tr:eq(0) th:eq(0)").attr("colspan",unmb-1);
+        }
+        
+    })
+    $("#deleteseline").click(function(){
+        $("tr.ui-selectee.ui-selected").each(function(){  
+            // if($(this).children("td.ui-selected").length==1){
+            // // var lie=Number($(this).find(".ui-selected").prevAll().length)+1;
+            // //$(".table tr td").eq(lie).remove();
+            // // 行
+            // }else{
+                // $(this).remove();
+            // }
+            //$("tr th").parent().removeClass("ui-selected").removeClass("ui-selectee");
+            $(this).children("td").each(function(){  
+                $(this).parent().remove();
+            })
+            // if($(this).children().find("td")){
+            //     $(this).remove();
+            // }
+        })
+    })
+    
+    var content = $('#t').selectable();
+
+var _mouseStart = content.data('selectable')['_mouseStart'];
+
+content.data('selectable')['_mouseStart'] = function(e) {
+    _mouseStart.call(this, e);
+    this.helper.css({
+        "top": -1,
+        "left": -1
+    });
+};
+     
+    // 合并单元格按钮
+    $("#btnMerge").click(function(){
+        var $t = $("#t");
+         
+        if ($("table", $t).length > 0) {
+            alert("不支持嵌套表格！");
+            return;
+        }
+        $("tr.ui-selectee.ui-selected").each(function(){  
+            if($(this).children("td.ui-selected").length==1){
+                var sigDel = "sign4delete";  // 删除标记，用作类名
+                var sigSel = "ui-selected";  // 选中标记，用作类名
+                 
+                // 补充单元格以便后继正确计算坐标
+                $("td", $t).not(".selectcable").each(function(){
+                    // 坐标要实时计算，因会实时补充
+                    var ridx = $("tr", $t).index($(this).parent("tr"));
+                    var cidx = $(this).parent().children("td").index(this);
+                    var rowspan = Number($(this).attr("rowspan")) || 1;
+                    var colspan = Number($(this).attr("colspan")) || 1;
+                    var isSel = $(this).hasClass(sigSel);
+                    // 非选单元格拆出的单元格要加删除标记
+                     
+                    if (rowspan <= 1 && colspan <= 1)
+                        return;
+                    // 跨格开插
+                    $("tr", $t).each(function(){
+                        var idx = $("tr", $t).index(this);
+                        var arr, $td = $("<td>").addClass(isSel ? sigSel : sigDel);
+                         
+                        if (idx == ridx) {
+                            // 本行在 [cidx] 后插入 colspan-1 个
+                             
+                            arr = $();  // 准备待插单元格
+                            for (var i=0; i < colspan-1; i++)
+                                arr = arr.add($td.clone());
+                            // 插入
+                            $("td", this).eq(cidx).after(arr);
+                             
+                        } else if (ridx < idx && idx < ridx + rowspan) {
+                            // 以下行在 [cidx] 前插入 colspan 个
+                             
+                            arr = $();  // 准备待插单元格
+                            for (var i=0; i < colspan; i++)
+                                arr = arr.add($td.clone());
+                            // 插入
+                            if (cidx > 0 && $("td", this).eq(cidx - 1).length > 0)
+                                $("td", this).eq(cidx - 1).after(arr);
+                            else if ($("td", this).eq(cidx).length > 0)
+                                $("td", this).eq(cidx).before(arr);
+                            else
+                                $(this).prepend(arr);
+                        }
+                    });
+                });
+                 
+                var rmin = 10000, cmin = 10000;
+                var rmax = 0    , cmax = 0    ;
+                var rnum        , cnum        ;
+                // 计算起始和跨距
+                $("td", $t).not(".selectcable").filter("." + sigSel).each(function(){
+                    var ridx = $("tr", $t).index($(this).parent("tr"));
+                    rmin = ridx < rmin ? ridx : rmin;
+                    rmax = ridx > rmax ? ridx : rmax;
+                    var cidx = $(this).parent().children("td").index(this);
+                    cmin = cidx < cmin ? cidx : cmin;
+                    cmax = cidx > cmax ? cidx : cmax;
+                });
+                rnum = rmax - rmin + 1;
+                cnum = cmax - cmin + 1;
+                 
+                // 合并单元格
+                $("td", $t).not(".selectcable").each(function(){
+                    var ridx = $("tr", $t).index($(this).parent("tr"));
+                    var cidx = $(this).parent().children("td").index(this);
+                    // 标记单元格待删
+                    if (rmin <= ridx && ridx <= rmax
+                     && cmin <= cidx && cidx <= cmax)
+                        $(this).addClass(sigDel);
+                    // 处理被选左上角单元格
+                    if (ridx == rmin && cidx == cmin)
+                        $(this).removeClass(sigDel).attr({rowspan: rnum, colspan: cnum});
+                    // 清理残余
+                    if ($(this).attr("rowspan") == 1) $(this).removeAttr("rowspan");
+                    if ($(this).attr("colspan") == 1) $(this).removeAttr("colspan");
+                }).remove("." + sigDel);
+                // 移除标记单元格
+                 
+                //ShowSelected();  // 更新选择结果文字
+            }
+        })
+    });
+     
+    // 拆分单元格按钮
+    $("#btnSplit").click(function(){
+        var $t = $("#t");
+         
+        if ($("table", $t).length > 0) {
+            alert("不支持嵌套表格！");
+            return;
+        }
+         
+        var sigDel = "sign4delete";  // 删除标记，类名，自定义
+        var sigSel = "ui-selected";  // 选中标记，类名，jQuery UI 定义
+         
+        // 补充单元格以便后继正确计算坐标
+        $("td", $t).each(function(){
+
+            // 坐标要实时计算，因会实时补充
+            var ridx = $("tr", $t).index($(this).parent("tr"));
+            var cidx = $(this).parent().children("td").index(this);
+            var rowspan = Number($(this).attr("rowspan")) || 1;
+            var colspan = Number($(this).attr("colspan")) || 1;
+            var isSel = $(this).hasClass(sigSel);
+            // 非选单元格拆出的单元格要加删除标记
+             
+            if (rowspan <= 1 && colspan <= 1)
+                return;
+             
+            if (isSel)
+                $(this).removeAttr("colspan").removeAttr("rowspan");
+             
+            // 跨格开插
+            $("tr", $t).each(function(){
+                var idx = $("tr", $t).index(this);
+                var arr, $td = $("<td>");
+                 
+                if (!isSel)
+                    $td.addClass(sigDel);
+                 
+                if (idx == ridx) {
+                    // 本行在 [cidx] 后插入 colspan-1 个
+                     
+                    arr = $();  // 准备待插单元格
+                    for (var i=0; i < colspan-1; i++)
+                        arr = arr.add($td.clone());
+                     
+                    $("td", this).eq(cidx).after(arr);
+                     
+                } else if (ridx < idx && idx < ridx + rowspan) {
+                    // 以下行在 [cidx] 前插入 colspan 个
+                     
+                    arr = $();  // 准备待插单元格
+                    for (var i=0; i < colspan; i++)
+                        arr = arr.add($td.clone());
+                     
+                    if (cidx > 0 && $("td", this).eq(cidx - 1).length > 0)
+                        $("td", this).eq(cidx - 1).after(arr);
+                    else if ($("td", this).eq(cidx).length > 0)
+                        $("td", this).eq(cidx).before(arr);
+                    else
+                        $(this).prepend(arr);
+                }
+            });
+        });
+         
+        // 重新获取以取到删者并删之
+        $("td", $t).remove("." + sigDel);
+    });
+});
+// ]]>
+    
+
+    /*
+    <div class="layer clearfix">
+    <div class="lay_box clearfix">
+        <div class="laybox clearfix">
+            <h3>标题</h3>
+            <form action="">
+                <div class="line_list">
+                    <input type="text">
+                </div>
+            </form>
+            <div class="abtn clearfix">
+                <a href="javascript:void(0)">确认</a>
+                <a href="javascript:void(0)" class="cancel">取消</a>
+            </div>
+        </div>
+    </div>
+</div>
+*/
+</script>
+</html>
